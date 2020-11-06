@@ -40,6 +40,10 @@ class Node:
     def next(self):
         return self._next
 
+    @property
+    def value(self):
+        return self._value
+
     @next.setter
     def next(self, node):
         self._next = node
@@ -57,7 +61,7 @@ class LinkedList:
     def get_node(self, position):
         count = 0
         node = self._head
-        while count <= self._length:
+        while count < self._length:
             if position == count:
                 return node
             count += 1
@@ -98,17 +102,35 @@ class LinkedList:
 
     # TODO: Implement the remove_tail method here
     def remove_tail(self):
-        pass
+        node = self._head
+        tail = self._tail
+        if self._length == 1:
+            self._head = None
+            self._tail = None
+
+        count = 0
+        while count < self._length - 1:
+            node = node.next
+
+        node.next = None
+        self._tail = node
+        self._length -= 1
+        return tail
 
     # TODO: Implement the __len__ method here
     def __len__(self):
-        pass
+        return self._length
 
 # Phase 2
 
     # TODO: Implement the contains_value method here
     def contains_value(self, target):
-        pass
+        node = self._head
+        while node:
+            if node.value == target:
+                return True
+            node = node.next
+        return False
 
     # TODO: Implement the insert_value method here
     def insert_value(self, position, value):
@@ -142,36 +164,36 @@ print(linked_list.get_node(0))                # None
 
 # # 3. Test adding a node to the list's tail
 linked_list.add_to_tail('new tail node')
-linked_list.add_to_tail('NEWEST TAIL NODE')
 print(linked_list.get_node(0))                # <__main__.Node object at ...>
 print(linked_list.get_node(0)._value)         # `new tail node`
-print(linked_list.get_node(1)._value)         # `new tail node`
+
 
 # # 4. Test adding a node to list's head
-print(linked_list.add_to_head('new head node'))
+linked_list.add_to_head('new head node')
 print(linked_list.get_node(0))                # <__main__.Node object at ...>
 print(linked_list.get_node(0)._value)         # `new head node`
 
 # # 5. Test removing the head node
-# linked_list.remove_head()
-# print(linked_list.get_node(0)._value)         # `new tail node` because `new head node` has been removed
-# print(linked_list.get_node(1))                # `None` because `new head node` has been removed
+linked_list.remove_head()
+print(linked_list.get_node(0))         # `new tail node` because `new head node` has been removed
+print(linked_list.get_node(1))                # `None` because `new head node` has been removed
 
 # # 6. Test removing the tail node
-# print(linked_list.get_node(0)._value)         # `new tail node`
-# linked_list.remove_tail()
-# print(linked_list.get_node(0))                # None
+print(linked_list.get_node(0)._value)         # `new tail node`
+linked_list.remove_tail()
+print(linked_list.get_node(0))                # None
 
 # # 7. Test returning the list length
-# print(len(linked_list))                                 # 2
+linked_list.add_to_head('new head node')
+print(len(linked_list))                                 # 2
 
 # Phase 2 Manual Testing
 
 # # 1. Test whether the list contains_value a value
-# linked_list = LinkedList()
-# linked_list.add_to_head('new head node')
-# print(linked_list.contains_value('new head node'))      # True
-# print(linked_list.contains_value('App Academy node'))   # False
+linked_list = LinkedList()
+linked_list.add_to_head('new head node')
+print(linked_list.contains_value('new head node'))      # True
+print(linked_list.contains_value('App Academy node'))   # False
 
 # # 2. Test inserting a node value into the list at a specific position
 # linked_list.insert_value(0, 'hello!')
