@@ -28,75 +28,96 @@ Phase 2:
 # Phase 1
 
 # TODO: Implement a Linked List Node class here
+
+
 class Node:
-  # TODO: Set the `_value` `_next` node instance variables
-  def __init__(self, value):
-    pass
+    # TODO: Set the `_value` `_next` node instance variables
+    def __init__(self, value):
+        self._value = value
+        self._next = None
+
+    @property
+    def next(self):
+        return self._next
+
+    @next.setter
+    def next(self, value):
+        self._value = value
 
 
 # TODO: Implement a Singly Linked List class here
 class LinkedList:
-  # TODO: Set the `_head` node, `_tail` node, and list `_length` instance variables
-  def __init__(self):
-    pass
+    # TODO: Set the `_head` node, `_tail` node, and list `_length` instance variables
+    def __init__(self):
+        self._head = None
+        self._tail = None
+        self._length = 0
 
-  # TODO: Implement the get_node method here
-  def get_node(self, position):
-    pass
+    # TODO: Implement the get_node method here
+    def get_node(self, position):
+        count = 0
+        node = self._head
+        while count <= self._length:
+            if position == count:
+                return node
+            count += 1
+            node = node.next
 
-  # TODO: Implement the add_to_tail method here
-  def add_to_tail(self, value):
-    pass
+    # TODO: Implement the add_to_tail method here
+    def add_to_tail(self, value):
+        pass
 
-  # TODO: Implement the add_to_head method here
-  def add_to_head(self, value):
-    pass
+    # TODO: Implement the add_to_head method here
+    def add_to_head(self, value):
+        pass
 
-  # TODO: Implement the remove_head method here
-  def remove_head(self):
-    pass
+    # TODO: Implement the remove_head method here
+    def remove_head(self):
+        pass
 
-  # TODO: Implement the remove_tail method here
-  def remove_tail(self):
-    pass
+    # TODO: Implement the remove_tail method here
+    def remove_tail(self):
+        pass
 
-  # TODO: Implement the __len__ method here
-  def __len__(self):
-    pass
+    # TODO: Implement the __len__ method here
+    def __len__(self):
+        pass
 
 # Phase 2
 
-  # TODO: Implement the contains_value method here
-  def contains_value(self, target):
-    pass
+    # TODO: Implement the contains_value method here
+    def contains_value(self, target):
+        pass
 
-  # TODO: Implement the insert_value method here
-  def insert_value(self, position, value):
-    pass
+    # TODO: Implement the insert_value method here
+    def insert_value(self, position, value):
+        pass
 
-  # TODO: Implement the update_value method here
-  def update_value(self, position, value):
-    pass
+    # TODO: Implement the update_value method here
+    def update_value(self, position, value):
+        pass
 
-  # TODO: Implement the remove_node method here
-  def remove_node(self, position):
-    pass
+    # TODO: Implement the remove_node method here
+    def remove_node(self, position):
+        pass
 
-  # TODO: Implement the __str__ method here
-  def __str__(self):
-    pass
+    # TODO: Implement the __str__ method here
+    def __str__(self):
+        pass
 
 # Phase 1 Manual Testing:
+
 
 # 1. Test Node and LinkedList initialization
 node = Node('hello')
 print(node)                                     # <__main__.Node object at ...>
 print(node._value)                              # hello
 linked_list = LinkedList()
-print(linked_list)                              # <__main__.LinkedList object at ...>
+# <__main__.LinkedList object at ...>
+# print(linked_list)
 
 # # 2. Test getting a node by its position
-# print(linked_list.get_node(0))                # None
+print(linked_list.get_node(0))                # None
 
 # # 3. Test adding a node to the list's tail
 # linked_list.add_to_tail('new tail node')
