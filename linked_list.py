@@ -41,8 +41,8 @@ class Node:
         return self._next
 
     @next.setter
-    def next(self, value):
-        self._value = value
+    def next(self, node):
+        self._next = node
 
 
 # TODO: Implement a Singly Linked List class here
@@ -65,15 +65,36 @@ class LinkedList:
 
     # TODO: Implement the add_to_tail method here
     def add_to_tail(self, value):
-        pass
+        newNode = Node(value)
+        if not self._head:
+            self._head = newNode
+        else:
+            self._tail.next = newNode
+        self._tail = newNode
+        self._length += 1
+
+        return self
 
     # TODO: Implement the add_to_head method here
     def add_to_head(self, value):
-        pass
+        newNode = Node(value)
+        if not self._head:
+            self._tail = newNode
+        else:
+            newNode.next = self._head
+        self._head = newNode
+        self._length += 1
+
+        return self
 
     # TODO: Implement the remove_head method here
     def remove_head(self):
-        pass
+        if self._head:
+            head = self._head
+            self._head = self._head.next
+            self._length -= 1
+            return head
+
 
     # TODO: Implement the remove_tail method here
     def remove_tail(self):
@@ -120,14 +141,16 @@ linked_list = LinkedList()
 print(linked_list.get_node(0))                # None
 
 # # 3. Test adding a node to the list's tail
-# linked_list.add_to_tail('new tail node')
-# print(linked_list.get_node(0))                # <__main__.Node object at ...>
-# print(linked_list.get_node(0)._value)         # `new tail node`
+linked_list.add_to_tail('new tail node')
+linked_list.add_to_tail('NEWEST TAIL NODE')
+print(linked_list.get_node(0))                # <__main__.Node object at ...>
+print(linked_list.get_node(0)._value)         # `new tail node`
+print(linked_list.get_node(1)._value)         # `new tail node`
 
 # # 4. Test adding a node to list's head
-# linked_list.add_to_head('new head node')
-# print(linked_list.get_node(0))                # <__main__.Node object at ...>
-# print(linked_list.get_node(0)._value)         # `new head node`
+print(linked_list.add_to_head('new head node'))
+print(linked_list.get_node(0))                # <__main__.Node object at ...>
+print(linked_list.get_node(0)._value)         # `new head node`
 
 # # 5. Test removing the head node
 # linked_list.remove_head()
